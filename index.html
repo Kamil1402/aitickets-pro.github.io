@@ -4,97 +4,176 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>AI Tickets — Automatyczna obsługa klientów</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {font-family: 'Inter', sans-serif; background: #0f1724; color: #e6eef6; margin:0; padding:0;}
-    .container {max-width:900px; margin:30px auto; padding:20px; background:#0b1220; border-radius:12px;}
-    h1 {font-size:28px; margin-bottom:10px;}
-    p {color:#9aa4b2;}
-    .btn {display:inline-block; padding:12px 20px; margin-top:12px; background:#6ee7b7; color:#022; text-decoration:none; font-weight:600; border-radius:8px;}
-    .packages {display:flex; gap:12px; margin-top:18px;}
-    .pkg {flex:1; padding:18px; background:#071a2a; border-radius:10px; border:1px solid rgba(255,255,255,0.03);}
-    .demo {margin-top:20px; padding:16px; background:#071826; border-radius:12px;}
-    .messages {max-height:200px; overflow:auto; display:flex; flex-direction:column; gap:8px; margin-bottom:8px;}
-    .msg {padding:10px; border-radius:8px; background:rgba(255,255,255,0.03);}
-    .msg.client {align-self:flex-end; background:#0ea5a0; color:#012;}
-    input {width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit;}
+    :root{--bg:#071426;--card:#0b1220;--muted:#9aa4b2;--accent:#6ee7b7}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Arial;margin:0;background:linear-gradient(180deg,#041020,#071426);color:#e6eef6}
+    .wrap{max-width:980px;margin:28px auto;padding:22px}
+    .card{background:var(--card);padding:20px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    h1{margin:0 0 8px;font-size:26px}
+    p.lead{color:var(--muted);margin:0 0 14px}
+    .grid{display:grid;grid-template-columns:1fr 420px;gap:20px}
+    .features{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .chip{background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:8px;color:var(--muted);font-size:13px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent);color:#022;font-weight:700;text-decoration:none}
+    /* form */
+    form.fieldset{display:block}
+    label{display:block;color:var(--muted);font-size:13px;margin-top:8px}
+    input[type=text], input[type=email], textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    textarea{min-height:90px;resize:vertical}
+    .submit-row{margin-top:12px}
+    .small{font-size:13px;color:var(--muted)}
+    .pkg{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:10px}
+    .demo{background:#071826;padding:12px;border-radius:10px;margin-top:12px}
+    .messages{max-height:200px;overflow:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+    .msg{padding:10px;border-radius:8px;background:rgba(255,255,255,0.03)}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-<div class="container">
-  <h1>AI Tickets — Automatyczna Obsługa Klientów</h1>
-  <p>Twoi klienci otrzymują odpowiedzi w kilka sekund, a Ty oszczędzasz czas i pieniądze. Idealne dla sklepów online, usług lokalnych i SaaS.</p>
-  <a href="mailto:twojemail@example.com" class="btn">Umów bezpłatną analizę</a>
+  <div class="wrap">
+    <div class="card">
+      <header style="display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div style="font-weight:800">AI Tickets</div>
+          <div class="small">Automatyczna obsługa klientów • 24/7</div>
+        </div>
+        <a class="btn" href="mailto:aiticketspro@gmail.com?subject=Analiza%20AI%20Tickets">Umów bezpłatną analizę</a>
+      </header>
 
-  <div class="packages">
-    <div class="pkg">
-      <h3>Basic</h3>
-      <p>400 zł — analiza + FAQ + 10 gotowych odpowiedzi</p>
-    </div>
-    <div class="pkg">
-      <h3>Standard</h3>
-      <p>900 zł — automatyczne odpowiedzi + integracja e-mail</p>
-    </div>
-    <div class="pkg">
-      <h3>Pro</h3>
-      <p>1900 zł — pełne wdrożenie + integracja social + raporty</p>
+      <main style="margin-top:18px" class="grid">
+        <section>
+          <h1>Automatyczna obsługa klientów — demo</h1>
+          <p class="lead">Pokażę Ci, jak AI automatyzuje odpowiedzi. Wypełnij formularz, a Twoje zgłoszenie trafi prosto na e-mail: <strong>aiticketspro@gmail.com</strong>.</p>
+
+          <div class="pkg">
+            <strong>Pakiety</strong>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <div style="flex:1"><strong>Basic</strong><div class="small">Jednorazowe wdrożenie + szablony</div></div>
+              <div style="flex:1"><strong>Standard</strong><div class="small">Automatyczne odpowiedzi + integracja</div></div>
+              <div style="flex:1"><strong>Pro</strong><div class="small">Pełne wdrożenie + raporty</div></div>
+            </div>
+          </div>
+
+          <h3 style="margin-top:14px">Formularz zgłoszeniowy</h3>
+
+          <!-- FORM: Formsubmit.co action wysyła email na aiticketspro@gmail.com -->
+          <form id="leadForm" action="https://formsubmit.co/aiticketspro@gmail.com" method="POST" class="fieldset">
+            <!-- hidden fields for formsubmit -->
+            <input type="hidden" name="_subject" value="Nowy lead z AI Tickets">
+            <input type="hidden" name="_captcha" value="false">
+            <!-- redirect back to same page with query ?sent=1 -->
+            <input type="hidden" name="_next" value="https://kamil1402.github.io/aitickets-pro/?sent=1">
+
+            <label for="company">Nazwa firmy</label>
+            <input id="company" name="Firma" type="text" placeholder="Np. Salon Beauty XYZ" required>
+
+            <label for="contact">E-mail kontaktowy</label>
+            <input id="contact" name="Email" type="email" placeholder="kontakt@firma.pl" required>
+
+            <label for="phone">Telefon (opcjonalnie)</label>
+            <input id="phone" name="Telefon" type="text" placeholder="np. +48 600 000 000">
+
+            <label for="channel">Gdzie klienci piszą?</label>
+            <input id="channel" name="Kanał" type="text" placeholder="Instagram / Messenger / e-mail / inne">
+
+            <label for="msg">Krótko — na czym polega problem (2–3 zdania)</label>
+            <textarea id="msg" name="Wiadomość" placeholder="Np. duża liczba pytań o zwroty" required></textarea>
+
+            <div class="submit-row">
+              <button type="submit" class="btn">Wyślij zgłoszenie</button>
+            </div>
+          </form>
+
+          <div id="thanks" class="small" style="margin-top:10px; display:none">
+            Dziękujemy! Twoje zgłoszenie zostało wysłane — sprawdzimy je i skontaktujemy się na podany e-mail.
+          </div>
+
+          <p class="small" style="margin-top:8px">Uwaga: pierwsze wysłanie wymaga potwierdzenia adresu e-mail przez Formsubmit (dostaniesz od nich mail z linkiem; kliknij go, aby aktywować odbieranie wiadomości).</p>
+
+        </section>
+
+        <aside>
+          <div class="pkg">
+            <strong>Demo AI Tickets</strong>
+            <p class="small">Wklej przykładową wiadomość klienta i zobacz jak system kategoryzuje i odpowiada.</p>
+
+            <div class="demo">
+              <div class="messages" id="messages">
+                <div class="msg small">Przykłady: "Nie mogę się zalogować", "Chciałbym zwrócić buty", "Kiedy moja paczka?"</div>
+              </div>
+
+              <input id="inputTxt" placeholder="Wklej treść zgłoszenia klienta..." />
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <button id="processBtn" class="btn">Przetwórz</button>
+              </div>
+            </div>
+
+            <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)" />
+
+            <div>
+              <strong>Gotowe skrypty DM (szybkie)</strong>
+              <div class="small" style="margin-top:8px">
+                <p><strong>Wiadomość pierwsza (DM):</strong><br>
+                Cześć! 👋 Pomagam firmom automatyzować odpowiedzi na wiadomości klientów (AI). Chcesz 7 dni testów za darmo?</p>
+
+                <p><strong>Follow-up (po 2 dniach):</strong><br>
+                Hej — czy miałeś chwilę, żeby sprawdzić demo? Mogę zrobić szybką analizę Twoich wiadomości.</p>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+
+      </main>
+
+      <footer style="margin-top:18px" class="small">
+        © AI Tickets — Strona demo. Zmień dane kontaktowe przed publikacją.
+      </footer>
     </div>
   </div>
 
-  <div class="demo">
-    <h3>Demo AI Tickets</h3>
-    <div class="messages" id="messages">
-      <div class="msg">Przykłady zgłoszeń: "Nie mogę się zalogować", "Chcę zwrócić produkt", "Kiedy paczka?"</div>
-    </div>
-    <input type="text" id="inputTxt" placeholder="Wklej treść zgłoszenia klienta...">
-    <button id="processBtn" class="btn" style="margin-top:8px;">Przetwórz</button>
-  </div>
-</div>
 <script>
-const messagesEl = document.getElementById('messages');
-const input = document.getElementById('inputTxt');
-const proc = document.getElementById('processBtn');
-
-function appendMsg(text, cls=''){
-  const d = document.createElement('div');
-  d.className = 'msg '+cls;
-  d.textContent = text;
-  messagesEl.appendChild(d);
-  messagesEl.scrollTop = messagesEl.scrollHeight;
-}
-
-function classify(text){
-  const t = text.toLowerCase();
-  if(t.includes('log')||t.includes('hasł')||t.includes('zalog')) return {cat:'Logowanie/Konto', auto:true};
-  if(t.includes('zwrot')||t.includes('zwrócić')||t.includes('zwroty')) return {cat:'Zwroty/Reklamacje', auto:true};
-  if(t.includes('zapłaci')||t.includes('płat')||t.includes('kod')) return {cat:'Płatności', auto:false};
-  if(t.includes('paczka')||t.includes('dostaw')||t.includes('wysyłk')) return {cat:'Dostawa', auto:true};
-  return {cat:'Inne', auto:false};
-}
-
-function generateReply(text){
-  const c = classify(text);
-  let tone='neutralny';
-  if(/[!]{2,}|nie|proszę|pilne/i.test(text)) tone='zdenerwowany';
-  let reply='';
-  switch(c.cat){
-    case 'Logowanie/Konto': reply = 'Przykro nam. Proszę skorzystać z linku do resetu hasła: [link resetu].'; break;
-    case 'Zwroty/Reklamacje': reply = 'Przykro nam, że produkt nie spełnił oczekiwań. Proszę wypełnić formularz zwrotu: [link zwrotu].'; break;
-    case 'Płatności': reply = 'Dziękujemy za informację. Sprawdzimy status płatności i wrócimy z odpowiedzią w ciągu 24h.'; break;
-    case 'Dostawa': reply = 'Sprawdzimy status przesyłki i wrócimy z informacją. Podaj proszę numer zamówienia.'; break;
-    default: reply = 'Dziękujemy za wiadomość. Proszę podać numer zamówienia i opis problemu.';
+  // demo classifier + reply (lokalna symulacja)
+  const messagesEl = document.getElementById('messages');
+  const input = document.getElementById('inputTxt');
+  const proc = document.getElementById('processBtn');
+  function appendMsg(text, cls=''){ const d = document.createElement('div'); d.className = 'msg ' + (cls||''); d.textContent = text; messagesEl.appendChild(d); messagesEl.scrollTop = messagesEl.scrollHeight; }
+  function classify(text){
+    const t = text.toLowerCase();
+    if(t.includes('log')||t.includes('hasł')||t.includes('zalog')) return {cat:'Logowanie/Konto', auto:true};
+    if(t.includes('zwrot')||t.includes('zwrócić')||t.includes('zwroty')) return {cat:'Zwroty/Reklamacje', auto:true};
+    if(t.includes('zapłaci')||t.includes('płat')||t.includes('kod')) return {cat:'Płatności', auto:false};
+    if(t.includes('paczka')||t.includes('dostaw')||t.includes('wysyłk')) return {cat:'Dostawa', auto:true};
+    return {cat:'Inne', auto:false};
   }
-  return {cat:c.cat, tone: tone, reply: reply, auto: c.auto};
-}
+  function generateReply(text){
+    const c = classify(text);
+    let tone='neutralny';
+    if(/[!]{2,}|nie|proszę|pilne/i.test(text)) tone='zdenerwowany';
+    let reply='';
+    switch(c.cat){
+      case 'Logowanie/Konto': reply = 'Proszę skorzystać z linku do resetu hasła: [link resetu].'; break;
+      case 'Zwroty/Reklamacje': reply = 'Proszę wypełnić formularz zwrotu: [link zwrotu].'; break;
+      case 'Płatności': reply = 'Sprawdzimy status płatności i wrócimy w ciągu 24h.'; break;
+      case 'Dostawa': reply = 'Sprawdzimy status przesyłki — podaj numer zamówienia.'; break;
+      default: reply = 'Proszę podać numer zamówienia i opis problemu.'; break;
+    }
+    return {cat:c.cat, tone: tone, reply: reply, auto: c.auto};
+  }
+  proc.addEventListener('click', ()=>{
+    const txt = input.value.trim(); if(!txt) return;
+    appendMsg(txt,'client');
+    const out = generateReply(txt);
+    setTimeout(()=>{ appendMsg('Kategoria: '+out.cat+' • Ton: '+out.tone+'\\nOdpowiedź: '+out.reply); },400);
+  });
 
-proc.addEventListener('click', ()=>{
-  const txt = input.value.trim(); if(!txt) return;
-  appendMsg(txt,'client');
-  const out = generateReply(txt);
-  setTimeout(()=>{ appendMsg('Kategoria: '+out.cat+' • Ton: '+out.tone+'\nOdpowiedź: '+out.reply); },500);
-});
+  // after form submit redirect: show thank you text if ?sent=1
+  (function(){
+    const params = new URLSearchParams(location.search);
+    if(params.get('sent')==='1'){ document.getElementById('thanks').style.display='block'; }
+  })();
 </script>
 </body>
 </html>
