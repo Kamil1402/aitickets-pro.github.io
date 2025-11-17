@@ -258,3 +258,12 @@
     document.querySelector("form").appendChild(urlField);
   });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const urlField = document.createElement("input");
+    urlField.type = "hidden";
+    urlField.name = "page_url";
+    urlField.value = window.location.href; // pełny aktualny URL
+    document.querySelector("form").appendChild(urlField);
+  });
+</script>
