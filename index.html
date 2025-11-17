@@ -248,3 +248,13 @@
     document.querySelector("form").appendChild(urlField);
   });
 </script>
+<!-- Skrypt dodający pełny URL strony do maila -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const urlField = document.createElement("input");
+    urlField.type = "hidden";
+    urlField.name = "page_url"; // nazwa pola, które pojawi się w mailu
+    urlField.value = window.location.href; // pełny adres aktualnej strony
+    document.querySelector("form").appendChild(urlField);
+  });
+</script>
