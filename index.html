@@ -1,1 +1,101 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Tickets — Automatyczna obsługa klientów</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {font-family: 'Inter', sans-serif; background: #0f1724; color: #e6eef6; margin:0; padding:0;}
+    .container {max-width:900px; margin:30px auto; padding:20px; background:#0b1220; border-radius:12px;}
+    h1 {font-size:28px; margin-bottom:10px;}
+    p {color:#9aa4b2;}
+    .btn {display:inline-block; padding:12px 20px; margin-top:12px; background:#6ee7b7; color:#022; text-decoration:none; font-weight:600; border-radius:8px;}
+    .packages {display:flex; gap:12px; margin-top:18px;}
+    .pkg {flex:1; padding:18px; background:#071a2a; border-radius:10px; border:1px solid rgba(255,255,255,0.03);}
+    .demo {margin-top:20px; padding:16px; background:#071826; border-radius:12px;}
+    .messages {max-height:200px; overflow:auto; display:flex; flex-direction:column; gap:8px; margin-bottom:8px;}
+    .msg {padding:10px; border-radius:8px; background:rgba(255,255,255,0.03);}
+    .msg.client {align-self:flex-end; background:#0ea5a0; color:#012;}
+    input {width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit;}
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>AI Tickets — Automatyczna Obsługa Klientów</h1>
+  <p>Twoi klienci otrzymują odpowiedzi w kilka sekund, a Ty oszczędzasz czas i pieniądze. Idealne dla sklepów online, usług lokalnych i SaaS.</p>
+  <a href="mailto:twojemail@example.com" class="btn">Umów bezpłatną analizę</a>
+
+  <div class="packages">
+    <div class="pkg">
+      <h3>Basic</h3>
+      <p>400 zł — analiza + FAQ + 10 gotowych odpowiedzi</p>
+    </div>
+    <div class="pkg">
+      <h3>Standard</h3>
+      <p>900 zł — automatyczne odpowiedzi + integracja e-mail</p>
+    </div>
+    <div class="pkg">
+      <h3>Pro</h3>
+      <p>1900 zł — pełne wdrożenie + integracja social + raporty</p>
+    </div>
+  </div>
+
+  <div class="demo">
+    <h3>Demo AI Tickets</h3>
+    <div class="messages" id="messages">
+      <div class="msg">Przykłady zgłoszeń: "Nie mogę się zalogować", "Chcę zwrócić produkt", "Kiedy paczka?"</div>
+    </div>
+    <input type="text" id="inputTxt" placeholder="Wklej treść zgłoszenia klienta...">
+    <button id="processBtn" class="btn" style="margin-top:8px;">Przetwórz</button>
+  </div>
+</div>
+<script>
+const messagesEl = document.getElementById('messages');
+const input = document.getElementById('inputTxt');
+const proc = document.getElementById('processBtn');
+
+function appendMsg(text, cls=''){
+  const d = document.createElement('div');
+  d.className = 'msg '+cls;
+  d.textContent = text;
+  messagesEl.appendChild(d);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function classify(text){
+  const t = text.toLowerCase();
+  if(t.includes('log')||t.includes('hasł')||t.includes('zalog')) return {cat:'Logowanie/Konto', auto:true};
+  if(t.includes('zwrot')||t.includes('zwrócić')||t.includes('zwroty')) return {cat:'Zwroty/Reklamacje', auto:true};
+  if(t.includes('zapłaci')||t.includes('płat')||t.includes('kod')) return {cat:'Płatności', auto:false};
+  if(t.includes('paczka')||t.includes('dostaw')||t.includes('wysyłk')) return {cat:'Dostawa', auto:true};
+  return {cat:'Inne', auto:false};
+}
+
+function generateReply(text){
+  const c = classify(text);
+  let tone='neutralny';
+  if(/[!]{2,}|nie|proszę|pilne/i.test(text)) tone='zdenerwowany';
+  let reply='';
+  switch(c.cat){
+    case 'Logowanie/Konto': reply = 'Przykro nam. Proszę skorzystać z linku do resetu hasła: [link resetu].'; break;
+    case 'Zwroty/Reklamacje': reply = 'Przykro nam, że produkt nie spełnił oczekiwań. Proszę wypełnić formularz zwrotu: [link zwrotu].'; break;
+    case 'Płatności': reply = 'Dziękujemy za informację. Sprawdzimy status płatności i wrócimy z odpowiedzią w ciągu 24h.'; break;
+    case 'Dostawa': reply = 'Sprawdzimy status przesyłki i wrócimy z informacją. Podaj proszę numer zamówienia.'; break;
+    default: reply = 'Dziękujemy za wiadomość. Proszę podać numer zamówienia i opis problemu.';
+  }
+  return {cat:c.cat, tone: tone, reply: reply, auto: c.auto};
+}
+
+proc.addEventListener('click', ()=>{
+  const txt = input.value.trim(); if(!txt) return;
+  appendMsg(txt,'client');
+  const out = generateReply(txt);
+  setTimeout(()=>{ appendMsg('Kategoria: '+out.cat+' • Ton: '+out.tone+'\nOdpowiedź: '+out.reply); },500);
+});
+</script>
+</body>
+</html>
 
