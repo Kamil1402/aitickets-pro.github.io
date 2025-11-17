@@ -249,4 +249,61 @@
   });
 </script>
 <input type="hidden" name="page_url" value="https://kamil1402.github.io/aitickets-pro/">
+<form action="https://formsubmit.co/aiticketspro@gmail.com" method="POST" style="max-width:600px;margin:0 auto;padding:20px;background:#f9f9f9;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.1);font-family:sans-serif;">
+  <!-- Wyłącz Captchę -->
+  <input type="hidden" name="_captcha" value="false">
+  
+  <!-- Przekierowanie po wysłaniu -->
+  <input type="hidden" name="_next" value="https://kamil1402.github.io/aitickets-pro/dziekuje.html">
+
+  <h2 style="text-align:center;color:#333;margin-bottom:20px;">Formularz zgłoszeniowy AI Tickets (B2B)</h2>
+
+  <label for="company" style="display:block;margin-bottom:5px;color:#555;">Nazwa firmy:</label>
+  <input type="text" id="company" name="company" placeholder="Np. ACME Sp. z o.o." required style="width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;">
+
+  <label for="name" style="display:block;margin-bottom:5px;color:#555;">Imię i nazwisko kontaktowe:</label>
+  <input type="text" id="name" name="name" placeholder="Np. Jan Kowalski" required style="width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;">
+
+  <label for="email" style="display:block;margin-bottom:5px;color:#555;">Email kontaktowy:</label>
+  <input type="email" id="email" name="email" placeholder="Np. jan.kowalski@acme.com" required style="width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;">
+
+  <label for="phone" style="display:block;margin-bottom:5px;color:#555;">Telefon kontaktowy:</label>
+  <input type="tel" id="phone" name="phone" placeholder="Np. +48 600 123 456" required style="width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;">
+
+  <label for="subject" style="display:block;margin-bottom:5px;color:#555;">Temat zgłoszenia:</label>
+  <input type="text" id="subject" name="subject" placeholder="Np. Problem z integracją API" required style="width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;">
+
+  <label for="message" style="display:block;margin-bottom:5px;color:#555;">Opis problemu / zgłoszenia:</label>
+  <textarea id="message" name="message" rows="5" placeholder="Opisz problem szczegółowo" required style="width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;"></textarea>
+
+  <label for="priority" style="display:block;margin-bottom:5px;color:#555;">Priorytet zgłoszenia:</label>
+  <select id="priority" name="priority" required style="width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;">
+    <option value="">Wybierz priorytet</option>
+    <option value="niski">Niski</option>
+    <option value="średni">Średni</option>
+    <option value="wysoki">Wysoki</option>
+  </select>
+
+  <label for="category" style="display:block;margin-bottom:5px;color:#555;">Kategoria zgłoszenia:</label>
+  <select id="category" name="category" required style="width:100%;padding:10px;margin-bottom:20px;border:1px solid #ccc;border-radius:6px;">
+    <option value="">Wybierz kategorię</option>
+    <option value="techniczne">Techniczne</option>
+    <option value="integracje">Integracje</option>
+    <option value="inne">Inne</option>
+  </select>
+
+  <button type="submit" style="width:100%;padding:12px;background:#4CAF50;color:white;border:none;border-radius:8px;font-size:16px;cursor:pointer;transition:background 0.3s;">Wyślij zgłoszenie</button>
+  <button type="reset" style="width:100%;padding:12px;margin-top:10px;background:#f44336;color:white;border:none;border-radius:8px;font-size:16px;cursor:pointer;transition:background 0.3s;">Wyczyść formularz</button>
+
+  <!-- Skrypt dodający pełny URL strony do maila -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const urlField = document.createElement("input");
+      urlField.type = "hidden";
+      urlField.name = "page_url";
+      urlField.value = window.location.href; // pełny adres aktualnej strony
+      document.querySelector("form").appendChild(urlField);
+    });
+  </script>
+</form>
 
