@@ -377,33 +377,3 @@
     </div>
   </div>
 </div>
-<script>
-async function loadTickets() {
-  const resp = await fetch('/data/tickets_500.json'); // adjust path if needed
-  const tickets = await resp.json();
-  // display first 20
-  const list = document.getElementById('tickets-list');
-  tickets.slice(0,20).forEach(t => {
-    const div = document.createElement('div');
-    div.innerHTML = `<strong>${t.company}</strong> [${t.language}] - ${t.subject} <br/> ${t.message} <hr/>`;
-    list.appendChild(div);
-  });
-}
-loadTickets();
-</script>
-<div id="tickets-list"></div>
-<script>
-async function loadTickets() {
-  const resp = await fetch('/data/tickets_500.json'); // adjust path if needed
-  const tickets = await resp.json();
-  // display first 20
-  const list = document.getElementById('tickets-list');
-  tickets.slice(0,20).forEach(t => {
-    const div = document.createElement('div');
-    div.innerHTML = `<strong>${t.company}</strong> [${t.language}] - ${t.subject} <br/> ${t.message} <hr/>`;
-    list.appendChild(div);
-  });
-}
-loadTickets();
-</script>
-<div id="tickets-list"></div>
