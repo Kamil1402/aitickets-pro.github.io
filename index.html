@@ -392,3 +392,9 @@ async function loadTickets() {
 loadTickets();
 </script>
 <div id="tickets-list"></div>
+function trainAIHandler(event) {
+  const ticketDiv = event.target.closest('.ticket');
+  const subject = ticketDiv.querySelector('h3').innerText;
+  alert("Simulation: AI has learned this ticket\n\n" + subject);
+}
+<button class="button" onclick="trainAIHandler(event)">Train AI on this ticket</button>
